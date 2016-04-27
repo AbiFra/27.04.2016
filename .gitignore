@@ -1,0 +1,29 @@
+install.packages("foreign")
+require (foreign)
+install.packages("fpp")
+library (fpp)
+pib<- read.csv("C:\\Users\\SALA-C27\\Downloads\\PIB TRIMESTRAL A PRECIOS DE 20082.csv", header = FALSE)
+pibm<-ts(pib [,2], start=1993, frequency=4)
+pibm
+View(pib)
+plot(pib)
+Acf(pib)
+partpro<-meanf(pibm, 4)
+plot(partpro)
+partpro1<-naive(pibm,4)
+plot(partpro1)
+partpro2<- snaive(pibm, 4)
+partpro2
+plot(partpro2)
+help(snaive)
+partpro3<- rwf(pibm, 4, drift = TRUE)
+partpro3
+plot(partpro3)
+a<-accuracy(partpro)
+b<-accuracy(partpro1)
+c<-accuracy(partpro2)
+d<-accuracy(partpro3)
+a
+b
+c
+d
